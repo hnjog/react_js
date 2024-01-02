@@ -15,14 +15,18 @@
 
   <script>
     const root = document.querySelector("#root");
-    const span = React.createElement(
-      "span",
-      { id: "cool-span", style: { color: "red" } },
-      "Hello"
-    );
+    const h3 = React.createElement("h3", 
+    {
+        onMouseEnter:()=>console.log("Mouse Enter!")
+    }, "Hello");
 
-    const button = React.createElement("button");
+    const btn = React.createElement("button", 
+    {
+        onClick:()=>console.log("im clicked!")
+    }, 
+    "Click me");
+    const container = React.createElement("div",null,[h3,btn]);
 
-    ReactDOM.render(span, root);
+    ReactDOM.render(container, root);
   </script>
 </html>
