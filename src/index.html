@@ -19,8 +19,8 @@
   <script type="text/babel">
     const root = document.querySelector("#root");
 
-    // props Type
-    function Btn({ text, fontSize }) {
+    // 12로 default 설정 가능
+    function Btn({ text, fontSize = 12 }) {
       return (
         <button
           style={{
@@ -37,6 +37,7 @@
       );
     }
 
+    // props Type
     Btn.propTypes = {
       text: PropTypes.string.isRequired,
       fontSize: PropTypes.number,
