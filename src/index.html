@@ -11,26 +11,25 @@
     (성능 향상)
     (그러나 development로 개발하면 더 많은 경고를 발견할 수 있음)
    -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
     const root = document.querySelector("#root");
 
-    function Btn({ text, changeValue }) {
-      console.log(text + " was rendered");
-      // 일종의 shortcut
-      // props.text를 줄여쓴것이긴하다
+    // props Type
+    function Btn({ text, fontSize }) {
       return (
         <button
-          onClick={changeValue}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
+            fontSize: fontSize, // 이름이 같다면 그냥 fontsize, 만 해도 됨
           }}
         >
           {text}
@@ -38,27 +37,15 @@
       );
     }
 
-    // React Memo
-    // 메모하는게 아니라 '기억'
-    // React에게 일부 자식 요소는 '다시 그릴' 필요가
-    // 없다고 상기시키기
-    // 일부 요소가 변화시에는 다시 그리지만
-    // 단순히 부모 요소만 변경된 경우, 다시 그리는 것 방지
-    const MemorizedBtn = React.memo(Btn);
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    };
 
     function App() {
-      // 부모 state가 변경되면
-      // 자식인 컴포넌트들도 전부 다시 그려지게 된다는 점을
-      // 인식하기
-      const [value, setValue] = React.useState("Save Changes");
-
-      // props의 요소로 들어가게 된다
-      const changeValue = () => setValue("Revert Changes");
-
       return (
         <div>
-          <MemorizedBtn text={value} changeValue={changeValue} />
-          <MemorizedBtn text="Continue" />
+          <Btn text="Continue" fontSize={19} />
         </div>
       );
     }
