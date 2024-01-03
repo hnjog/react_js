@@ -4,33 +4,28 @@
     <div id="root"></div>
   </body>
 
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- 
+    development => production.min
+    개발용 버전 => 배포용 버전
+    배포용 버전이 용량이 더 작고 일부 경고 및 디버깅 정보 제거
+    (성능 향상)
+    (그러나 development로 개발하면 더 많은 경고를 발견할 수 있음)
+   -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
     const root = document.querySelector("#root");
 
     function App() {
-      const [counter, setCounter] = React.useState(0);
-      // setCounter 는 일종의 setter
-      // 따라서 useState에 같이 연동된 녀석에게 값을 덮어씌움
-      // 아래의 render를 호출하지 않으며
-      // 'component'를 refresh하는 방식
-      // react는 '전부' 새로 그리지 않으며
-      // 부분만 업데이트 한다는 점을 숙지하자
-      // 어찌되었든 state가 바뀌게 된다면 rerender 한다
-      const clickAdd = () => {
-        //setCounter(counter + 1);
-        // 함수로 업데이트 하는것이 '비동기'에 관련되어
-        // 조금 더 안전한 처리방식이 된다
-        setCounter((current) => current + 1);
-      };
-
       return (
         <div>
-          <h3>Total clicks : {counter}</h3>
-          <button onClick={clickAdd}>Click me</button>
+          <h1>Converter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input id="minutes" placeholder="Minutes" type="number" />
+          <label htmlFor="hours">Hours</label>
+          <input id="hours" placeholder="Hours" type="number" />
         </div>
       );
     }
