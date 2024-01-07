@@ -10,14 +10,13 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { db } from "../firebase/firebase";
 import Tweet from "./tweet";
-import { Unsubscribe } from "firebase/auth";
 
 const Wrapper = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
-  overflow-y: scroll;
-  max-height: 600px;
+  // overflow-y: scroll;
+  // max-height: 600px;
 `;
 
 export default function Timeline() {
