@@ -45,6 +45,7 @@ export default function Timeline() {
         setTweet(tweets);
       });
     };
+
     fetchTweets();
     return () => {
       unsubscribe && unsubscribe();
